@@ -698,7 +698,7 @@ MonoBehaviour:
     name: background
     pitch: 1
     volume: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &1859332361
 Transform:
