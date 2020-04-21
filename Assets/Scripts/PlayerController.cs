@@ -29,15 +29,18 @@ public class PlayerController : MonoBehaviour {
     private float colliderSizeY;
     private float colliderOffsetY;
     private Animator animator;
+    private AudioManager audioManager;
 
     void Start () {
         characterController = GetComponent<CharacterController2D> (); //identif. o componente
         animator = GetComponent<Animator> ();
         boxCollider = GetComponent<BoxCollider2D> ();
+        audioManager = FindObjectOfType<AudioManager> ();
 
         transform.position = GameState.checkpoint;
         colliderSizeY = boxCollider.size.y;
         colliderOffsetY = boxCollider.offset.y;
+
         isDead = false;
     }
 

@@ -700,6 +700,72 @@ MonoBehaviour:
     volume: 1
     loop: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 91d4ff022f91f40a2bc776722adfded3, type: 3}
+    name: 1up
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8ca2098015d4a423282ef728b4f075ae, type: 3}
+    name: coin
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
+    name: background
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
+    name: background
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 71ce3fcd2c2154fa6b02d4f08e13b0a8, type: 3}
+    name: fireball
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 16e2586c98cb9478eb68a33aea3baa0a, type: 3}
+    name: gameOver
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9cee5a61184b04a94a61344bbd8e91d1, type: 3}
+    name: smallJump
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
+    name: background
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
+    name: background
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
+    name: background
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
+    name: background
+    pitch: 1
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1859332361
 Transform:
   m_ObjectHideFlags: 0

@@ -29,6 +29,15 @@ public class AudioManager : MonoBehaviour {
         Play ("background");
     }
 
+    void Stop (float timeout = 0f) {
+        foreach (Sound s in sounds) {
+            s.source.Pause ();
+            if (timeout > 0f) {
+                StartCoroutine (UnPauseTimeout (s.source, timeout));
+            }
+        }
+    }
+
     Sound Find (string name) {
         bool found = false;
         foreach (Sound s in sounds) {
@@ -85,5 +94,11 @@ public class AudioManager : MonoBehaviour {
         }
         if (kill)
             audioSource.Stop ();
+    }
+
+    private static IEnumerator UnPauseTimeout (AudioSource audioSource, float timeout) {
+
+        yield return new WaitForSeconds (timeout);
+        audioSource.UnPause ();
     }
 }
