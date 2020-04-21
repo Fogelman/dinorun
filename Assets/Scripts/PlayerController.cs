@@ -79,10 +79,10 @@ public class PlayerController : MonoBehaviour {
             if (hit.collider != null && isGrounded) {
                 transform.SetParent (hit.transform);
                 // Debug.Log ("Juntou!");
-                if (Input.GetAxis ("Vertical") < 0 && Input.GetButtonDown ("Jump")) {
-                    moveDirection.y = -jumpSpeed;
-                    StartCoroutine (PassPlatform (hit.transform.gameObject));
-                }
+                // if (Input.GetAxis ("Vertical") < 0 && Input.GetButtonDown ("Jump")) {
+                //     moveDirection.y = -jumpSpeed;
+                //     StartCoroutine (PassPlatform (hit.transform.gameObject));
+                // }
             } else {
                 transform.SetParent (null);
             }

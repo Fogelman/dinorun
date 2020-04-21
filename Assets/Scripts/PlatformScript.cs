@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlatformScript : MonoBehaviour {
     // Start is called before the first frame update
-    public int speedX;
-    public int speedY;
+    public float speedX;
+    public float speedY;
     public float maxX;
     public float maxY;
 
@@ -25,8 +25,8 @@ public class PlatformScript : MonoBehaviour {
         if (Mathf.Abs (gameObject.transform.position.y - initialPosition.y) > (maxY / 2)) {
             speedY = -speedY;
         }
-        gameObject.transform.position += Vector3.right * dt * speedX;
-        gameObject.transform.position += Vector3.up * dt * speedY;
+        gameObject.transform.position += Vector3.right * dt * speedX * GameState.speed;
+        gameObject.transform.position += Vector3.up * dt * speedY * GameState.speed;
 
     }
 }
