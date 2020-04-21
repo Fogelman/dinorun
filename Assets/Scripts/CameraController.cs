@@ -43,7 +43,3 @@ public class CameraController : MonoBehaviour {
         );
     }
 }
-
-// Mathf.Lerp (cameraTransform.position.y,
-//     player.transform.position.y + cameraYOffset,
-//     verticalSpeed * Time.deltaTime)
