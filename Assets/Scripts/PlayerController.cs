@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
         characterController = GetComponent<CharacterController2D> (); //identif. o componente
         animator = GetComponent<Animator> ();
         boxCollider = GetComponent<BoxCollider2D> ();
+
+        transform.position = GameState.checkpoint;
         colliderSizeY = boxCollider.size.y;
         colliderOffsetY = boxCollider.offset.y;
         isDead = false;
@@ -78,11 +80,10 @@ public class PlayerController : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 4f, mask);
             if (hit.collider != null && isGrounded) {
                 transform.SetParent (hit.transform);
-                // Debug.Log ("Juntou!");
-                // if (Input.GetAxis ("Vertical") < 0 && Input.GetButtonDown ("Jump")) {
-                //     moveDirection.y = -jumpSpeed;
-                //     StartCoroutine (PassPlatform (hit.transform.gameObject));
-                // }
+                if (Input.GetAxis ("Vertical") < 0 && Input.GetButtonDown ("Jump")) {
+                    moveDirection.y = -jumpSpeed;
+                    StartCoroutine (PassPlatform (hit.transform.gameObject));
+                }
             } else {
                 transform.SetParent (null);
             }
@@ -146,18 +147,3 @@ public class PlayerController : MonoBehaviour {
         platform.GetComponent<EdgeCollider2D> ().enabled = true;
     }
 }
-// if (Input.GetAxis ("Vertical") < 0 && moveDirection.x == 0) {
-//     if (!isDucking) {
-//         boxCollider.size = new Vector2 (boxCollider.size.x, 2 * colliderSizeY / 3);
-//         boxCollider.offset = new Vector2 (boxCollider.offset.x, colliderOffsetY - colliderSizeY / 6);
-//         characterController.recalculateDistanceBetweenRays ();
-//     }
-//     isDucking = true;
-// } else {
-//     if (isDucking) {
-//         boxCollider.size = new Vector2 (boxCollider.size.x, colliderSizeY);
-//         boxCollider.offset = new Vector2 (boxCollider.offset.x, colliderOffsetY);
-//         characterController.recalculateDistanceBetweenRays ();
-//         isDucking = false;
-//     }
-// }
