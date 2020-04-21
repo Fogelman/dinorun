@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
     public bool isFalling; // Se estiver caindo 
     public bool isDead; // Se estiver caindo 
 
+    public LayerMask mask;
+
     private Vector3 moveDirection = Vector3.zero; // direção que o personagem se move
     private CharacterController2D characterController; //Componente do Char. Controller
 
@@ -73,6 +75,18 @@ public class PlayerController : MonoBehaviour {
                 }
             }
 
+            RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 4f, mask);
+            if (hit.collider != null && isGrounded) {
+                transform.SetParent (hit.transform);
+                // Debug.Log ("Juntou!");
+                if (Input.GetAxis ("Vertical") < 0 && Input.GetButtonDown ("Jump")) {
+                    moveDirection.y = -jumpSpeed;
+                    StartCoroutine (PassPlatform (hit.transform.gameObject));
+                }
+            } else {
+                transform.SetParent (null);
+            }
+
             if (moveDirection.y < 0) {
 
                 isFalling = true;
@@ -124,6 +138,12 @@ public class PlayerController : MonoBehaviour {
             SceneManager.LoadScene ("Main");
         }
 
+    }
+
+    private IEnumerator PassPlatform (GameObject platform) {
+        platform.GetComponent<EdgeCollider2D> ().enabled = false;
+        yield return new WaitForSeconds (1.0f);
+        platform.GetComponent<EdgeCollider2D> ().enabled = true;
     }
 }
 // if (Input.GetAxis ("Vertical") < 0 && moveDirection.x == 0) {
