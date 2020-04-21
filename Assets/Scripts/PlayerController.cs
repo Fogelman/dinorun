@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour {
                 doubleJumped = false; // se voltou ao chão pode faz pulo duplo
 
                 if (Input.GetButton ("Jump")) {
+                    audioManager.Play ("jump");
                     moveDirection.y = jumpSpeed;
                     isJumping = true;
                 }
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 
                 if (Input.GetButtonDown ("Jump") && !doubleJumped) // Segundo clique faz pulo duplo
                 {
+                    audioManager.Play ("jump");
                     moveDirection.y = doubleJumpSpeed;
                     doubleJumped = true;
                 }
@@ -119,6 +121,7 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerEnter2D (Collider2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer ("Coins")) {
             GameState.score += 5;
+            audioManager.Play ("coin");
             Destroy (other.gameObject);
         } else if (other.gameObject.layer == LayerMask.NameToLayer ("Damage")) {
             if (!isDead) {
@@ -129,10 +132,20 @@ public class PlayerController : MonoBehaviour {
 
     private IEnumerator DeathSequence () {
         isDead = true;
+        float waitFor = 2.7f;
         if (GameState.score > GameState.maxScore) {
             GameState.maxScore = GameState.score;
         }
-        yield return new WaitForSeconds (2);
+
+        if (GameState.lives <= 1) {
+            waitFor = 4f;
+            audioManager.Stop (waitFor);
+            audioManager.Play ("gameover");
+        } else {
+            audioManager.Stop (waitFor);
+            audioManager.Play ("die");
+        }
+        yield return new WaitForSeconds (waitFor);
         GameState.lives -= 1;
         GameState.score = 0;
         if (GameState.lives <= 0) {

@@ -29,15 +29,6 @@ public class AudioManager : MonoBehaviour {
         Play ("background");
     }
 
-    void Stop (float timeout = 0f) {
-        foreach (Sound s in sounds) {
-            s.source.Pause ();
-            if (timeout > 0f) {
-                StartCoroutine (UnPauseTimeout (s.source, timeout));
-            }
-        }
-    }
-
     Sound Find (string name) {
         bool found = false;
         foreach (Sound s in sounds) {
@@ -61,6 +52,14 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    public void Stop (float timeout = 0f) {
+        foreach (Sound s in sounds) {
+            s.source.Pause ();
+            if (timeout > 0f) {
+                StartCoroutine (UnPauseTimeout (s.source, timeout));
+            }
+        }
+    }
     public void Fade (string name, float duration, float target, bool kill) {
         Sound sound = Find (name);
         if (sound != null) {

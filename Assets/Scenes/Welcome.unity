@@ -701,7 +701,7 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 91d4ff022f91f40a2bc776722adfded3, type: 3}
-    name: 1up
+    name: 1Up
     pitch: 1
     volume: 1
     loop: 0
@@ -712,14 +712,14 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
-    name: background
+  - clip: {fileID: 8300000, guid: 94c52a5ce56b14b1486323da78bcc741, type: 3}
+    name: stageClear
     pitch: 1
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
-    name: background
+  - clip: {fileID: 8300000, guid: f91659c540b42464da9dea2da14102b3, type: 3}
+    name: stomp
     pitch: 1
     volume: 1
     loop: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 16e2586c98cb9478eb68a33aea3baa0a, type: 3}
-    name: gameOver
+    name: gameover
     pitch: 1
     volume: 1
     loop: 0
@@ -742,26 +742,26 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
-    name: background
+  - clip: {fileID: 8300000, guid: 9fb6b40309c4d4101858a2418467aca4, type: 3}
+    name: jump
     pitch: 1
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
-    name: background
+  - clip: {fileID: 8300000, guid: 6b58745064c71486bb7b05f3e999d4e8, type: 3}
+    name: die
     pitch: 1
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
-    name: background
+  - clip: {fileID: 8300000, guid: ce7f53a7739a14b07a069b6d35a069d9, type: 3}
+    name: warning
     pitch: 1
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
-    name: background
+  - clip: {fileID: 8300000, guid: 1bcf8e44b4ac54f2d92f5a3b8dd04303, type: 3}
+    name: worldClear
     pitch: 1
     volume: 1
     loop: 0
