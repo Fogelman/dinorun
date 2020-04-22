@@ -792,7 +792,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: dfb94494efcee43d084797de9272145d, type: 3}
     name: background
     pitch: 1
-    volume: 0
+    volume: 1
     loop: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 91d4ff022f91f40a2bc776722adfded3, type: 3}
