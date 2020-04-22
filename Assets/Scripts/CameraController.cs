@@ -34,8 +34,10 @@ public class CameraController : MonoBehaviour {
             player.transform.position.x + (playerController.isFacingRight?cameraXOffset: -cameraXOffset),
             horizontalSpeed * Time.deltaTime);
 
-        if (x < 0) {
-            x = 0;
+        if (x < 0f) {
+            x = 0f;
+        } else if (x > 159f) {
+            x = 159f;
         }
         cameraTransform.position = new Vector3 (x,
             0,

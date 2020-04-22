@@ -106,6 +106,9 @@ public class PlayerController : MonoBehaviour {
 
             flags = characterController.collisionState; // recupera flags
             isGrounded = flags.below; // define flag de chão
+        } else {
+            moveDirection.x = 0f;
+            moveDirection.y = 0f;
         }
 
         // Atualizando Animator com estados do jogo
@@ -127,7 +130,7 @@ public class PlayerController : MonoBehaviour {
             if (!isDead) {
                 StartCoroutine ("DeathSequence");
             }
-        } else if (other.gameObject.layer == LayerMask.NameToLayer ("Damage")) {
+        } else if (other.gameObject.layer == LayerMask.NameToLayer ("Win")) {
             if (!isDead) {
                 StartCoroutine ("victorySequence");
             }
@@ -135,12 +138,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private IEnumerator victorySequence () {
-        float waitFor = 2.7f;
+        float waitFor = 3.7f;
         if (GameState.score > GameState.maxScore) {
             GameState.maxScore = GameState.score;
         }
 
-        audioManager.Stop ();
+        audioManager.Stop (waitFor + 2);
         audioManager.Play ("stageClear");
 
         yield return new WaitForSeconds (waitFor);
@@ -175,9 +178,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private IEnumerator PassPlatform (GameObject platform) {
-        platform.GetComponent<EdgeCollider2D> ().enabled = false;
-        yield return new WaitForSeconds (1.0f);
-        platform.GetComponent<EdgeCollider2D> ().enabled = true;
+
+        if (platform.GetComponent<EdgeCollider2D> () != null) {
+            platform.GetComponent<EdgeCollider2D> ().enabled = false;
+            yield return new WaitForSeconds (1.0f);
+            platform.GetComponent<EdgeCollider2D> ().enabled = true;
+        }
     }
 
     public void applyDamage () {

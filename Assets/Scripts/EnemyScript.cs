@@ -26,7 +26,7 @@ public class EnemyScript : MonoBehaviour {
         if (!isDead) {
 
             gameObject.transform.Translate (Vector3.right * speed * Time.deltaTime);
-            RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, Mathf.Infinity, mask);
+            RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.down, 0.75f, mask);
 
             if (hit.collider == null) {
 
