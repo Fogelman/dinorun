@@ -127,9 +127,26 @@ public class PlayerController : MonoBehaviour {
             if (!isDead) {
                 StartCoroutine ("DeathSequence");
             }
+        } else if (other.gameObject.layer == LayerMask.NameToLayer ("Damage")) {
+            if (!isDead) {
+                StartCoroutine ("victorySequence");
+            }
         }
     }
 
+    private IEnumerator victorySequence () {
+        float waitFor = 2.7f;
+        if (GameState.score > GameState.maxScore) {
+            GameState.maxScore = GameState.score;
+        }
+
+        audioManager.Stop ();
+        audioManager.Play ("stageClear");
+
+        yield return new WaitForSeconds (waitFor);
+        SceneManager.LoadScene ("GameOver");
+
+    }
     private IEnumerator DeathSequence () {
         isDead = true;
         float waitFor = 2.7f;
