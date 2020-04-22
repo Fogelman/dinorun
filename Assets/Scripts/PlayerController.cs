@@ -162,4 +162,10 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds (1.0f);
         platform.GetComponent<EdgeCollider2D> ().enabled = true;
     }
+
+    public void applyDamage () {
+        if (!isDead) {
+            StartCoroutine ("DeathSequence");
+        }
+    }
 }
