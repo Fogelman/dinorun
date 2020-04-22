@@ -21,12 +21,12 @@ public class PlatformScript : MonoBehaviour {
 
         if (Mathf.Abs (gameObject.transform.position.x - initialPosition.x) > (maxX / 2)) {
             speedX = -speedX;
-            gameObject.transform.position += Vector3.right * dt * 5 * speedX * GameState.speed;
+            gameObject.transform.position += Vector3.right * dt * 1f * speedX * GameState.speed;
 
         }
         if (Mathf.Abs (gameObject.transform.position.y - initialPosition.y) > (maxY / 2)) {
             speedY = -speedY;
-            gameObject.transform.position += Vector3.up * dt * 5 * speedY * GameState.speed;
+            gameObject.transform.position += Vector3.up * dt * 1f * speedY * GameState.speed;
 
         }
         gameObject.transform.position += Vector3.right * dt * speedX * GameState.speed;
