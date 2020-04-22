@@ -45,71 +45,70 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update () {
-        moveDirection.x = Input.GetAxis ("Horizontal"); // recupera valor dos controles
+
+        moveDirection.x = isDead? 0 : Input.GetAxis ("Horizontal"); // recupera valor dos controles
         moveDirection.x *= walkSpeed;
 
-        if (!isDead) {
-            if (moveDirection.x < 0) {
-                transform.eulerAngles = new Vector3 (0, 180, 0);
-                isFacingRight = false;
+        if (moveDirection.x < 0 && !isDead) {
+            transform.eulerAngles = new Vector3 (0, 180, 0);
+            isFacingRight = false;
 
-            } else if (moveDirection.x > 0) {
-                transform.eulerAngles = new Vector3 (0, 0, 0);
-                isFacingRight = true;
+        } else if (moveDirection.x > 0 && !isDead) {
+            transform.eulerAngles = new Vector3 (0, 0, 0);
+            isFacingRight = true;
 
-            }
-
-            if (isGrounded) { // caso esteja no chão
-                moveDirection.y = 0.0f;
-                isJumping = false;
-                doubleJumped = false; // se voltou ao chão pode faz pulo duplo
-
-                if (Input.GetButton ("Jump")) {
-                    audioManager.Play ("jump");
-                    moveDirection.y = jumpSpeed;
-                    isJumping = true;
-                }
-
-            } else { // caso esteja pulando 
-                if (Input.GetButtonUp ("Jump") && moveDirection.y > 0) // Soltando botão diminui pulo
-                    moveDirection.y *= 0.5f;
-
-                if (Input.GetButtonDown ("Jump") && !doubleJumped) // Segundo clique faz pulo duplo
-                {
-                    audioManager.Play ("jump");
-                    moveDirection.y = doubleJumpSpeed;
-                    doubleJumped = true;
-                }
-            }
-
-            RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 4f, mask);
-            if (hit.collider != null && isGrounded) {
-                transform.SetParent (hit.transform);
-                if (Input.GetAxis ("Vertical") < 0 && Input.GetButtonDown ("Jump")) {
-                    moveDirection.y = -jumpSpeed;
-                    StartCoroutine (PassPlatform (hit.transform.gameObject));
-                }
-            } else {
-                transform.SetParent (null);
-            }
-
-            if (moveDirection.y < 0) {
-
-                isFalling = true;
-            } else {
-                isFalling = false;
-
-            }
-
-            moveDirection.y -= gravity * Time.deltaTime; // aplica a gravidade
-            characterController.move (moveDirection * Time.deltaTime); // move personagem    
-
-            flags = characterController.collisionState; // recupera flags
-            isGrounded = flags.below; // define flag de chão
-        } else {
-            moveDirection.x = 0f;
-            moveDirection.y = 0f;
         }
+
+        if (isGrounded) { // caso esteja no chão
+            moveDirection.y = 0.0f;
+            isJumping = false;
+            doubleJumped = false; // se voltou ao chão pode faz pulo duplo
+
+            if (Input.GetButton ("Jump") && !isDead) {
+                audioManager.Play ("jump");
+                moveDirection.y = jumpSpeed;
+                isJumping = true;
+            }
+
+        } else { // caso esteja pulando 
+            if (Input.GetButtonUp ("Jump") && moveDirection.y > 0 && !isDead) // Soltando botão diminui pulo
+                moveDirection.y *= 0.5f;
+
+            if (Input.GetButtonDown ("Jump") && !doubleJumped && !isDead) // Segundo clique faz pulo duplo
+            {
+                audioManager.Play ("jump");
+                moveDirection.y = doubleJumpSpeed;
+                doubleJumped = true;
+            }
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast (transform.position, -Vector2.up, 4f, mask);
+        if (hit.collider != null && isGrounded) {
+            transform.SetParent (hit.transform);
+
+            if (isDead) {
+                StartCoroutine (PassPlatform (hit.transform.gameObject));
+            } else if (Input.GetAxis ("Vertical") < 0 && Input.GetButtonDown ("Jump")) {
+                moveDirection.y = -jumpSpeed;
+                StartCoroutine (PassPlatform (hit.transform.gameObject));
+            }
+        } else {
+            transform.SetParent (null);
+        }
+
+        if (moveDirection.y < 0) {
+
+            isFalling = true;
+        } else {
+            isFalling = false;
+
+        }
+
+        moveDirection.y -= gravity * Time.deltaTime; // aplica a gravidade
+        characterController.move (moveDirection * Time.deltaTime); // move personagem    
+
+        flags = characterController.collisionState; // recupera flags
+        isGrounded = flags.below; // define flag de chão
 
         // Atualizando Animator com estados do jogo
         animator.SetFloat ("movementX", Mathf.Abs (moveDirection.x / walkSpeed)); // +Normalizado
